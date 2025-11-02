@@ -59,7 +59,7 @@ $visits = $stmt->fetchAll();
                         </ul>
                     </li>
                 <a class="navbar-brand" href="../domeny/domeny.php">Domeny</a>
-                <a href="../mycloud.php" class="btn btn-info">📁 Mój dysk (MyCloud)</a>
+                <a href="../myOshi/mycloud.php" class="btn btn-info">📁 Mój dysk (MyCloud)</a>
                 </ul>
             <a href="../logout.php" class="btn btn-warning me-3">Wyloguj</a>
         </div>

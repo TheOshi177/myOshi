@@ -54,7 +54,7 @@ if ($is_admin) {
 
 </ul>
 
-</li><a href="../mycloud.php" class="btn btn-info">📁 Mój dysk (MyCloud)</a></ul>
+</li><a href="../myOshi/mycloud.php" class="btn btn-info">📁 Mój dysk (MyCloud)</a></ul>
 <a href="../logout.php" class="btn btn-warning me-3">Wyloguj</a>
 </div></div></nav>
 
