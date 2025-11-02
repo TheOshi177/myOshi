@@ -42,6 +42,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         </ul>
                     </li>
                 <a class="navbar-brand" href="domeny/domeny.php">Domeny</a>
+                <a href="mycloud.php" class="btn btn-info">📁 Mój dysk (MyCloud)</a>
                 </ul>
                 <!-- Przycisk Wyloguj -->
                 <a href="logout.php" class="btn btn-warning me-3">Wyloguj</a>
