@@ -48,10 +48,13 @@ if ($is_admin) {
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Lista</a>
 <ul class="dropdown-menu">
-<li><a class="dropdown-item" href="monitoring/Panel_1.php">Informacje o użytkowniku</a></li>
+<li><a class="dropdown-item" href="../monitoring/Panel_1.php">Informacje o użytkowniku</a></li>
 <li><a class="dropdown-item" href="../Panel_2.php">Strona 2</a></li>
 <li><a class="dropdown-item" href="../Panel_3.php">Strona 3</a></li>
-</ul></li></ul>
+
+</ul>
+
+</li><a href="../mycloud.php" class="btn btn-info">📁 Mój dysk (MyCloud)</a></ul>
 <a href="../logout.php" class="btn btn-warning me-3">Wyloguj</a>
 </div></div></nav>
 
