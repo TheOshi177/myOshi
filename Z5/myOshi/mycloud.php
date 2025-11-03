@@ -10,23 +10,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 // Sanitizacja użytkownika
 $user = preg_replace('/[^A-Za-z0-9_\-]/', '', $_SESSION['username']);
 $user = substr($user, 0, 32);
-<<<<<<< HEAD
 $userDir = __DIR__ . '/users/' . $user;
-=======
-$userDir = realpath(__DIR__ . '/users/' . $user);
->>>>>>> 588906b8e3987e658625f8af43f2c5b62eb8465a
 
 if (!is_dir($userDir)) mkdir($userDir, 0755, true);
 
 // Pobranie bieżącego katalogu (względem katalogu użytkownika)
-<<<<<<< HEAD
 $relDir = isset($_GET['dir']) ? trim($_GET['dir'], '/') : '';
 $relDir = preg_replace('/[^A-Za-z0-9_\-\/]/', '', $relDir); // litery, cyfry, "-", "/"
-=======
-$relDir = isset($_GET['dir']) ? $_GET['dir'] : '';
-$relDir = trim($relDir, '/');
-$relDir = preg_replace('/[^A-Za-z0-9_\-\/]/', '', $relDir); // pozwól tylko na litery, cyfry, "-" i "/"
->>>>>>> 588906b8e3987e658625f8af43f2c5b62eb8465a
 $currentDir = realpath($userDir . '/' . $relDir);
 
 // Sprawdzenie, czy katalog jest w katalogu użytkownika
@@ -108,14 +98,9 @@ foreach ($pathParts as $part) {
     <div>
         <a href="download.php?file=<?php echo urlencode($relItemPath); ?>" class="btn btn-success btn-sm">Pobierz</a>
         <a href="delete.php?file=<?php echo urlencode($relItemPath); ?>" class="btn btn-danger btn-sm">Usuń</a>
-<<<<<<< HEAD
 
         <?php if (in_array($ext, ['jpg','jpeg','png','gif'])): ?>
             <button class="btn btn-info btn-sm" onclick="window.open('view.php?file=<?php echo urlencode($relItemPath); ?>','_blank')">Podgląd</button>
-=======
-        <?php if (in_array($ext, ['jpg','jpeg','png','gif'])): ?>
-            <button class="btn btn-info btn-sm" onclick="window.open('download.php?file=<?php echo urlencode($relItemPath); ?>','_blank')">Podgląd</button>
->>>>>>> 588906b8e3987e658625f8af43f2c5b62eb8465a
         <?php elseif (in_array($ext, ['mp3'])): ?>
             <audio controls src="download.php?file=<?php echo urlencode($relItemPath); ?>"></audio>
         <?php elseif (in_array($ext, ['mp4','webm'])): ?>

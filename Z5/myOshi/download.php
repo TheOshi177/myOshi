@@ -8,12 +8,7 @@ $userDir = realpath(__DIR__.'/users/'.$user);
 
 if (!isset($_GET['file'])) exit;
 
-<<<<<<< HEAD
 $file = str_replace(['..','\\'], '', $_GET['file']);
-=======
-$file = $_GET['file'];
-$file = str_replace(['..','\\'], '', $file);
->>>>>>> 588906b8e3987e658625f8af43f2c5b62eb8465a
 $path = realpath($userDir.'/'.$file);
 
 if ($path===false || strpos($path,$userDir)!==0 || !is_file($path)) exit;
