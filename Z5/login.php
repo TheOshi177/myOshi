@@ -48,7 +48,11 @@ if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['loggedin'] = true;
-    $_SESSION['is_admin'] = $user['is_admin'] ?? false; // ustawienie admina
+    $_SESSION['is_admin'] = $user['is_admin'] ?? false;
+
+    // 🔹 Zapis logowania do tabeli user_logins (Opcja B)
+    $stmt2 = $pdo->prepare("INSERT INTO user_logins (username) VALUES (?)");
+    $stmt2->execute([$user['username']]);
 
     header("Location: Panel_Profil.php");
     exit();
