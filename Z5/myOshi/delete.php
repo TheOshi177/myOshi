@@ -6,6 +6,7 @@ $user = preg_replace('/[^A-Za-z0-9_\-]/','',$_SESSION['username']);
 $user = substr($user,0,32);
 $userDir = realpath(__DIR__.'/users/'.$user);
 
+<<<<<<< HEAD
 if (!isset($_GET['file'])) exit;
 
 $target = str_replace(['..','\\'], '', $_GET['file']);
@@ -21,10 +22,26 @@ function deleteDir($dir){
         if($item==='.'||$item==='..') continue;
         deleteDir($dir.DIRECTORY_SEPARATOR.$item);
     }
+=======
+if (!isset($_GET['file'])) { header('Location: mycloud.php'); exit; }
+
+$target = str_replace(['..','\\'], '', $_GET['file']);
+$path = realpath($userDir.'/'.$target);
+if ($path===false || strpos($path,$userDir)!==0) { $_SESSION['flash_error']='Nieprawidłowa ścieżka.'; header('Location: mycloud.php'); exit; }
+
+function deleteDir($dir){
+    if (!file_exists($dir)) return;
+    if (is_file($dir) || is_link($dir)) { unlink($dir); return; }
+    foreach(scandir($dir) as $item){ if($item==='.'||$item==='..') continue; deleteDir($dir.DIRECTORY_SEPARATOR.$item); }
+>>>>>>> 588906b8e3987e658625f8af43f2c5b62eb8465a
     rmdir($dir);
 }
 
 deleteDir($path);
+<<<<<<< HEAD
+=======
+$_SESSION['flash_success']='Usunięto pomyślnie.';
+>>>>>>> 588906b8e3987e658625f8af43f2c5b62eb8465a
 header('Location: mycloud.php');
 exit;
 ?>
