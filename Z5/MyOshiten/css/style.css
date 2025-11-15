@@ -20,3 +20,8 @@ h3 {
     background-color: #1db954;
     color: #fff;
 }
+
+.list-group-item.active {
+    background-color: #1db954;
+    color: #fff;
+}

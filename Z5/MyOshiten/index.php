@@ -43,10 +43,14 @@ $songs = array_filter(scandir($songsDir), function($file) use ($songsDir) {
     </nav>
 
     <main class="container mt-4">
+    <div class="mb-3">
+        <button id="autoplayBtn" class="btn btn-primary me-2">Autoplay: OFF</button>
+        <button id="loopBtn" class="btn btn-secondary">Loop Playlist: ON</button>
+    </div>
+
         <div class="row mb-4">
             <div class="col-12 text-center">
                 <audio id="audioPlayer" class="w-100" controls>
-                    <source src="" type="audio/mpeg">
                     Twoja przeglądarka nie obsługuje odtwarzacza audio.
                 </audio>
             </div>
@@ -58,7 +62,7 @@ $songs = array_filter(scandir($songsDir), function($file) use ($songsDir) {
                 <ul class="list-group" id="songsList">
                     <?php foreach($songs as $song): ?>
                         <li class="list-group-item list-group-item-action"
-                            data-src="songs/<?php echo urlencode($song); ?>">
+                            data-src="songs/<?php echo htmlspecialchars($song); ?>">
                             <?php echo htmlspecialchars($song); ?>
                         </li>
                     <?php endforeach; ?>
@@ -68,6 +72,33 @@ $songs = array_filter(scandir($songsDir), function($file) use ($songsDir) {
     </main>
 
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const songsList = Array.from(document.querySelectorAll('#songsList li'));
+            let currentIndex = -1;
+
+            function playSong(index) {
+                if(index < 0 || index >= songsList.length) return;
+                currentIndex = index;
+                const src = songsList[index].getAttribute('data-src');
+                audioPlayer.src = src;
+                audioPlayer.play();
+
+                songsList.forEach(item => item.classList.remove('active'));
+                songsList[index].classList.add('active');
+            }
+
+            songsList.forEach((item, index) => {
+                item.addEventListener('click', () => playSong(index));
+            });
+
+            audioPlayer.addEventListener('ended', () => {
+                let nextIndex = currentIndex + 1;
+                if(nextIndex >= songsList.length) nextIndex = 0;
+                playSong(nextIndex);
+            });
+        });
+    </script>
 </body>
 </html>
